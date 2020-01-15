@@ -32,3 +32,17 @@ class Node(object):
                 self.right_child = self.__create(value)
                 return
             self.right_child.add(value)
+
+    def search(self, value):
+        if value == self.value:
+            return self
+        if value < self.value:
+            try:
+                return self.left_child.search(value)
+            except AttributeError:
+                return None
+        if value > self.value:
+            try:
+                return self.right_child.search(value)
+            except AttributeError:
+                return None

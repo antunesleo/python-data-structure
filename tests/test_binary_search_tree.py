@@ -75,3 +75,30 @@ class TestNodeAdd(unittest.TestCase):
         self.node.add(2)
         with self.assertRaises(ValueError):
             self.node.add(10)
+
+
+class TestNodeSearch(unittest.TestCase):
+
+    def test_should_return_node_if_root_node_value_is_equals_to_value(self):
+        node = Node.create_root(5)
+        found_node = node.search(5)
+        self.assertEqual(node, found_node)
+
+    def test_should_return_node_recursively(self):
+        node = Node.create_root(5)
+        node.add(3)
+        node.add(2)
+        node.add(6)
+        node.add(4)
+        found_node = node.search(2)
+        self.assertIsInstance(found_node, Node)
+        self.assertEqual(found_node.value, 2)
+
+    def test_should_return_none_if_value_not_found(self):
+        node = Node.create_root(5)
+        node.add(3)
+        node.add(2)
+        node.add(6)
+        node.add(4)
+        found_node = node.search(12)
+        self.assertIsNone(found_node)
