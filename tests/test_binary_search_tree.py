@@ -64,3 +64,14 @@ class TestNodeAdd(unittest.TestCase):
         self.assertEqual(self.node.right_child.right_child.value, 10)
         self.assertIsInstance(self.node.left_child, Node)
         self.assertEqual(self.node.left_child.value, 2)
+
+    def test_should_return_error_if_value_equals_to_root_node_value(self):
+        with self.assertRaises(ValueError):
+            self.node.add(5)
+
+    def test_should_return_error_if_value_equals_to_any_node_value(self):
+        self.node.add(8)
+        self.node.add(10)
+        self.node.add(2)
+        with self.assertRaises(ValueError):
+            self.node.add(10)

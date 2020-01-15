@@ -20,11 +20,15 @@ class Node(object):
         return cls(value)
 
     def add(self, value):
+        if value == self.value:
+            raise ValueError('value is already in the tree')
         if value < self.value:
             if self.left_child is None:
                 self.left_child = self.__create(value)
+                return
             self.left_child.add(value)
         if value > self.value:
             if self.right_child is None:
                 self.right_child = self.__create(value)
+                return
             self.right_child.add(value)
